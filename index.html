@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESTETIKA SENJA</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f4f4f4;
+        }
+
+        .wrap {
+            display: flex;
+            background: #fff;
+            padding: 20px;
+            gap: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+            width: 90%;
+            max-width: 900px;
+        }
+
+        .info {
+            flex: 1;
+        }
+
+        h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        p {
+            margin: 6px 0;
+            line-height: 1.4;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            text-align: center;
+            background: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #555;
+        }
+
+        #map {
+            flex: 1;
+            min-height: 350px;
+            height: 100%;
+        }
+
+        /* MOBILE MODE */
+        @media (max-width: 768px) {
+            .wrap {
+                flex-direction: column;
+                padding: 15px;
+            }
+            #map {
+                min-height: 300px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="info">
+        <h2>ESTETIKA SENJA</h2>
+
+        <p><strong>Produced by :</strong> ESTETIKA SENJA</p>
+        <p><strong>Promoted by :</strong> ESTETIKA SENJA ASYURA.Co</p>
+        <p><strong>Trademark ID :</strong> JID2024138969</p>
+        <p><strong>Halal Certificate ID :</strong> ID35410029106210925</p>
+        <p><strong>SPP-IRT Certificate ID :</strong> P-IRT 2053525011615-29</p>
+
+        <a class="btn" href="https://wa.me/message/7RJ2Q5WZ67EGK1" target="_blank">Kontak WhatsApp</a>
+        <a class="btn" href="https://maps.app.goo.gl/8tyjosQk1kDYeufXA" target="_blank">Lihat di Google Maps</a>
+        <a class="btn" href="https://katalog.inaproc.id/estetika-senja-asyura" target="_blank">Katalog Resmi</a>
+    </div>
+
+    <div id="map"></div>
+</div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+    // Koordinat
+    const lat = -7.2380238;
+    const lng = 112.5835485;
+
+    // Membuat map
+    var map = L.map('map', {
+        zoomControl: true
+    }).setView([lat, lng], 18);
+
+    // Layer map
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 20,
+    }).addTo(map);
+
+    // Marker
+    L.marker([lat, lng]).addTo(map);
+
+    // FIX: Map tidak muncul pada mobile karena ukuran berubah
+    function fixMap() {
+        setTimeout(() => {
+            map.invalidateSize();
+        }, 300);
+    }
+
+    window.onload = fixMap;
+    window.onresize = fixMap;
+</script>
+
+</body>
+</html>
